@@ -73,3 +73,4 @@ to verify the stubs. In `microservice-kubernetes-demo-customer` and
 REST services.
 
 Note that the code has no dependencies on Kubernetes.
+hii
