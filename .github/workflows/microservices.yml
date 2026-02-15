@@ -26,7 +26,7 @@ jobs:
 
       - name: Build catalog service
         run: |
-          cd  microservice-kubernetes-demo-catalog
+          cd  microservice-kubernetes-demo/microservice-kubernetes-demo-catalog
           mvn clean package -DskipTests
 
 
@@ -44,7 +44,7 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Build customer service
+      - name: microservice-kubernetes-demo/Build customer service
         run: |
           cd microservice-kubernetes-demo-customer
           mvn clean package -DskipTests
@@ -64,7 +64,7 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Build order service
+      - name: microservice-kubernetes-demo/Build order service
         run: |
           cd microservice-kubernetes-demo-order
           mvn clean package -DskipTests
