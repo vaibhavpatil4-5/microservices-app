@@ -26,7 +26,7 @@ jobs:
 
       - name: Build catalog service
         run: |
-          cd catalog-service
+          cd  microservice-kubernetes-demo-catalog
           mvn clean package -DskipTests
 
 
@@ -46,7 +46,7 @@ jobs:
 
       - name: Build customer service
         run: |
-          cd customer-service
+          cd microservice-kubernetes-demo-customer
           mvn clean package -DskipTests
 
 
@@ -66,7 +66,7 @@ jobs:
 
       - name: Build order service
         run: |
-          cd order-service
+          cd microservice-kubernetes-demo-order
           mvn clean package -DskipTests
 
 
@@ -91,7 +91,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: us-east-1
 
       - name: Setup kubectl
         uses: azure/setup-kubectl@v4
