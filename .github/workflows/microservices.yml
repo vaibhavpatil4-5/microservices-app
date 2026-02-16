@@ -76,7 +76,7 @@ jobs:
   Deploy-to-EKS:
     runs-on: ubuntu-latest
 
-    # ⭐ DEPENDS ON ALL BUILDS
+    # DEPENDS ON ALL BUILDS
     needs:
       - build-catalog
       - build-customer
