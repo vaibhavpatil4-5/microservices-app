@@ -61,3 +61,57 @@ Deployment happens only if all builds succeed.
 
 Example endpoint:
 
+
+---
+
+## 🔐 Kubernetes Resources
+
+- Service Account (pod identity)
+- Deployment (application pods)
+- ClusterIP Service (internal routing)
+- Ingress (external routing via ALB)
+
+---
+
+## 🚀 Deployment Steps (Manual)
+
+Create resources using kubectl:
+
+```bash
+kubectl create deployment <service>
+kubectl expose deployment <service>
+kubectl apply -f ingress.yaml
+CI/CD automatically handles deployment when code is pushed.
+
+microservice-kubernetes-demo/
+│
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+│
+├── kubernetesfile/
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── ingress.yaml
+│
+├── catalog-service/
+│   ├── src/
+│   ├── pom.xml
+│   └── Dockerfile
+│
+├── customer-service/
+│   ├── src/
+│   ├── pom.xml
+│   └── Dockerfile
+│
+├── order-service/
+│   ├── src/
+│   ├── pom.xml
+│   └── Dockerfile
+│
+└── README.md
+
+
+👨‍💻 Author
+Vaibhav Patil
+Cloud & DevOps Enthusiast
