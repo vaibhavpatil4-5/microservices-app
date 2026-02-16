@@ -23,9 +23,8 @@ kind: Service
 metadata:
   name: apache
 spec:
-  type: LoadBalancer
   selector:
     app: apache
   ports:
-  - port: 80
-    targetPort: 80
+  - port: 8080
+    targetPort: 8080
