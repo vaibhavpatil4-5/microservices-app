@@ -5,15 +5,18 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+
+    # HEALTH CHECK FIX (IMPORTANT)
     alb.ingress.kubernetes.io/healthcheck-path: /
-    alb.ingress.kubernetes.io/success-codes: "200"
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    alb.ingress.kubernetes.io/success-codes: "200,301,302"
+
 spec:
   ingressClassName: alb
   rules:
     - http:
         paths:
 
-          # Root → Apache UI
           - path: /
             pathType: Prefix
             backend:
@@ -22,7 +25,6 @@ spec:
                 port:
                   number: 8080
 
-          # Catalog API
           - path: /catalog
             pathType: Prefix
             backend:
@@ -31,7 +33,6 @@ spec:
                 port:
                   number: 8080
 
-          # Customer API
           - path: /customer
             pathType: Prefix
             backend:
@@ -40,7 +41,6 @@ spec:
                 port:
                   number: 8080
 
-          # Order API
           - path: /order
             pathType: Prefix
             backend:
