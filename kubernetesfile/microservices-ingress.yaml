@@ -6,15 +6,12 @@ metadata:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/healthcheck-path: /
-    alb.ingress.kubernetes.io/success-codes: 200,301,302
 
 spec:
   rules:
   - http:
       paths:
 
-      # FRONTEND (Apache UI)
       - path: /
         pathType: Prefix
         backend:
@@ -23,7 +20,6 @@ spec:
             port:
               number: 8080
 
-      # CATALOG SERVICE
       - path: /catalog
         pathType: Prefix
         backend:
@@ -32,7 +28,6 @@ spec:
             port:
               number: 8080
 
-      # CUSTOMER SERVICE
       - path: /customer
         pathType: Prefix
         backend:
@@ -41,7 +36,6 @@ spec:
             port:
               number: 8080
 
-      # ORDER SERVICE
       - path: /order
         pathType: Prefix
         backend:
