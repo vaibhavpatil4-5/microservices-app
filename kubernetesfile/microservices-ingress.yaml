@@ -21,7 +21,7 @@ spec:
           service:
             name: apache
             port:
-              number: 80
+              number: 8080
 
       # CATALOG SERVICE
       - path: /catalog
