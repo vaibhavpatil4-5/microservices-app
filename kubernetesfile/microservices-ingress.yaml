@@ -3,48 +3,49 @@ kind: Ingress
 metadata:
   name: microservices-alb-ingress
   annotations:
+    kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-
-    # HEALTH CHECK FIX (IMPORTANT)
     alb.ingress.kubernetes.io/healthcheck-path: /
-    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
-    alb.ingress.kubernetes.io/success-codes: "200,301,302"
+    alb.ingress.kubernetes.io/success-codes: 200,301,302
 
 spec:
-  ingressClassName: alb
   rules:
-    - http:
-        paths:
+  - http:
+      paths:
 
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: apache
-                port:
-                  number: 8080
+      # FRONTEND (Apache UI)
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: apache
+            port:
+              number: 80
 
-          - path: /catalog
-            pathType: Prefix
-            backend:
-              service:
-                name: catalog
-                port:
-                  number: 8080
+      # CATALOG SERVICE
+      - path: /catalog
+        pathType: Prefix
+        backend:
+          service:
+            name: catalog
+            port:
+              number: 8080
 
-          - path: /customer
-            pathType: Prefix
-            backend:
-              service:
-                name: customer
-                port:
-                  number: 8080
+      # CUSTOMER SERVICE
+      - path: /customer
+        pathType: Prefix
+        backend:
+          service:
+            name: customer
+            port:
+              number: 8080
 
-          - path: /order
-            pathType: Prefix
-            backend:
-              service:
-                name: order
-                port:
-                  number: 8080
+      # ORDER SERVICE
+      - path: /order
+        pathType: Prefix
+        backend:
+          service:
+            name: order
+            port:
+              number: 8080
